@@ -1,0 +1,64 @@
+### Registro de usuario
+POST http://localhost:3001/api/auth/register
+Content-Type: application/json
+
+{
+  "username": "alejandro",
+  "password": "123456"
+}
+
+### Login de usuario
+POST http://localhost:3001/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "alejandro",
+  "password": "123456"
+}
+
+### 🔐 Token (reemplaza esto con tu token actualizado manualmente o con script)
+@token = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJhbGVqYW5kcm8iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NDk4NjI5MzksImV4cCI6MTc0OTg3MDEzOX0.pXRvt531JZ3ITx-3W2K7nrAFxDtdw8P-m1cc1yf4ai0
+
+### Crear producto (admin)
+POST http://localhost:3001/api/products
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "name": "Playstation 5",
+  "description": "Ideal para Jugar",
+  "price": 599,
+  "image": "https://via.placeholder.com/200"
+}
+
+### Obtener todos los productos
+GET http://localhost:3001/api/products
+
+### Eliminar producto (requiere admin)
+DELETE http://localhost:3001/api/products/2
+Authorization: {{token}}
+
+
+### Buscar productos (filtro)
+GET http://localhost:3001/api/products?search=zapato
+
+### Productos paginados (página 2)
+GET http://localhost:3001/api/products?page=2
+
+### Obtener carrito
+GET http://localhost:3001/api/cart
+Authorization: {{token}}
+
+### Agregar al carrito
+POST http://localhost:3001/api/cart/add
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "product_id": 4,
+  "quantity": 2
+}
+
+### Eliminar del carrito
+DELETE http://localhost:3001/api/cart/remove/1
+Authorization: {{token}}
